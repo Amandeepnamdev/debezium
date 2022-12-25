@@ -2008,19 +2008,37 @@ GTIDs are available in MySQL 5.6.5 and later. See the link:https://dev.mysql.com
 
 .Procedure
 
-. Enable `gtid_mode`:
+ Enable `enforce_gtid_consistency`:
+[source,SQL]
+First check the warnings if any by running the below command. If warnings are not generated then go ahead.
+----
+mysql> SET @@GLOBAL.ENFORCE_GTID_CONSISTENCY = WARN;
+----
 +
 [source,SQL]
 ----
-mysql> gtid_mode=ON
+mysql> SET @@GLOBAL.ENFORCE_GTID_CONSISTENCY = ON;
 ----
 
-. Enable `enforce_gtid_consistency`:
+. Enable `gtid_mode`:
+Follow below steps consecutively to enable gtid_mode.
 +
 [source,SQL]
 ----
-mysql> enforce_gtid_consistency=ON
+mysql> SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
 ----
++
+[source,SQL]
+----
+mysql> SET @@GLOBAL.GTID_MODE = ON_PERMISSIVE;
+----
++
+[source,SQL]
+----
+mysql> SET @@GLOBAL.GTID_MODE = ON;
+----
+
+.
 
 . Confirm the changes:
 +
